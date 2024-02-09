@@ -33,6 +33,7 @@ const commentSchema = new Schema({
         lowercase: true,
         trim: true,
     },
+    userAvatar: String
 }, {
     timestamps: true
 });
