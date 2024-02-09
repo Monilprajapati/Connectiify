@@ -1,12 +1,13 @@
 import { Schema, model } from "mongoose";
 
-const postSchema = new Schema({
-    description: {
-        type: String,
-        required: true
-    },
-    tag: [String],
-    image: String,
+const commentSchema = new Schema({
+    owner: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    commentData: String,
     upvotes: [
         {
             type: Schema.Types.ObjectId,
@@ -19,16 +20,12 @@ const postSchema = new Schema({
             ref: 'User'
         }
     ],
-    owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    room: String,
-    comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    }],
-    userAvatar: String,
+    subComment: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
     username: {
         type: String,
         required: true,
@@ -36,8 +33,9 @@ const postSchema = new Schema({
         lowercase: true,
         trim: true,
     },
+    userAvatar: String
 }, {
     timestamps: true
 });
 
-export const Post = model('Post', postSchema);
+export const Comment = model("Comment", commentSchema);
