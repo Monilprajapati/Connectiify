@@ -7,6 +7,9 @@ import cors from "cors";
 import connectToMongo from "./src/config/databaseConfig.js";
 import { PORT } from "./src/config/serverConfig.js";
 
+//! routes import
+import authRoutes from "./src/routes/auth.routes.js";
+
 //* Defination of legend function
 const setUpAndStartServer = async () => {
     try {
@@ -24,6 +27,9 @@ const setUpAndStartServer = async () => {
 
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
+
+        //- routes use
+        app.use("/api/v1/auth", authRoutes);
 
         app.listen(PORT, () => {
             console.log("Server started on PORT : ", PORT);
