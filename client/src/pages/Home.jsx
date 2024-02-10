@@ -8,7 +8,6 @@ const Home = () => {
     <div className="flex w-full h-[calc(100vh-70px)]">
       <Sidebar />
       <Post/>
-      {/* <RightSection /> */}
     </div>
   );
 };
