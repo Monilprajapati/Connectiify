@@ -9,7 +9,7 @@ import { nameGenerator } from '../utils/nameGenerator.js'
 
 const register = asyncHandler(
     async (req, res) => {
-        const { email, password } = req.body
+        const { email, password, role } = req.body
         if ([email, password].some(field => field?.trim === ''))
             throw new ApiError(400, 'Please provide all required fields')
 
@@ -42,7 +42,7 @@ const register = asyncHandler(
             "hotmail.ru",
             "live.ru",
             // many more
-        ];
+        ]; 
 
         const room = email.split('@')[1];
         const domain = room.toLowerCase();
@@ -56,7 +56,8 @@ const register = asyncHandler(
             username,
             email,
             password,
-            room
+            room,
+            role
         })
 
         const createdUser = await User.findById(user._id).select("-password -room -posts -channels")
