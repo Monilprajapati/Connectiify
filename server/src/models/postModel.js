@@ -28,7 +28,7 @@ const postSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     }],
-    avtar: String,
+    userAvatar: String,
     username: {
         type: String,
         required: true,
