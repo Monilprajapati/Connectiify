@@ -8,8 +8,10 @@ const getPosts = asyncHandler(
     async (req, res) => {
         const { room } = req.user
         const posts = await Post.find(
-            { room, role: "user" },
+            { room , role: "user"}
+
         )
+        console.log("controller:" + posts)
         return res.status(200).json(
             new ApiResponse(200, posts, "Posts retrieved successfully")
         )
@@ -19,9 +21,10 @@ const getPosts = asyncHandler(
 const createPost = asyncHandler(
     async (req, res) => {
         const { description, tag } = req.body
-        const { room, _id } = req.user
+        const { room, _id, userAvatar, username } = req.user
         // console.log("Description : ", description)
-        console.log("req.body : ", req.body)
+        // console.log("req.body : ", req.body)
+        console.log("avatar : ", userAvatar)
 
         // req.files is an object containing the files uploaded on the server
         const imageLocalPath = req.files?.postImage[0]?.path
@@ -42,13 +45,15 @@ const createPost = asyncHandler(
 
         const post = await Post.create({
             description,
+            userAvatar,
+            username,
             image: postImage.url,
             tag,
             room,
             role: "user",
             owner: _id,
-            username: req.user.username,
-            userAvatar: req.user.avatar,
+            // username: req.user.username,
+            // userAvatar: req.user.avatar,
         })
 
         return res.status(201).json(

@@ -74,16 +74,14 @@ const SideBar = () => {
             style={{
               transitionDelay: `${i + 3}00ms`,
             }}
-            className={`whitespace-pre duration-500 ${
-              !open && "opacity-0 translate-x-28 overflow-hidden"
-            }`}
+            className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
+              }`}
           >
             {channel?.name}
           </h2>
           <h2
-            className={`${
-              open && "hidden"
-            } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+            className={`${open && "hidden"
+              } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
           >
             {channel?.name}
           </h2>
@@ -118,16 +116,14 @@ const SideBar = () => {
             style={{
               transitionDelay: `${i + 3}00ms`,
             }}
-            className={`whitespace-pre duration-500 ${
-              !open && "opacity-0 translate-x-28 overflow-hidden"
-            }`}
+            className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
+              }`}
           >
             {channel?.name}
           </h2>
           <h2
-            className={`${
-              open && "hidden"
-            } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+            className={`${open && "hidden"
+              } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
           >
             {channel?.name}
           </h2>
@@ -138,18 +134,16 @@ const SideBar = () => {
 
   return (
     <div
-      className={`bg-lightGray opacity-0 z-50 fixed md:opacity-100 md:block md:relative h-full ${
-        open
+      className={`bg-lightGray opacity-0 z-50 fixed md:opacity-100 md:block md:relative h-full ${open
           ? "opacity-100 w-[85%] md:w-[30%] lg:w-[23%] xl:w-[18%]"
           : `${mobile ? "hidden" : "w-20"}`
-      } duration-500 px-4`}
+        } duration-500 px-4`}
     >
       <Toaster />
       <HiOutlineMenuAlt2
         size={30}
-        className={`cursor-pointer hidden md:block text-black absolute top-3 ${
-          open ? "right-3" : "left-0 w-full"
-        } duration-100`}
+        className={`cursor-pointer hidden md:block text-black absolute top-3 ${open ? "right-3" : "left-0 w-full"
+          } duration-100`}
         onClick={() => setOpen(!open)}
       />
       <hr className="hidden md:block md:relative top-14 text-black" />
@@ -168,16 +162,14 @@ const SideBar = () => {
             style={{
               transitionDelay: `200ms`,
             }}
-            className={`whitespace-pre mt-1 duration-500 ${
-              !open && "opacity-0 translate-x-28 overflow-hidden"
-            }`}
+            className={`whitespace-pre mt-1 duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
+              }`}
           >
             All Posts
           </h2>
           <h2
-            className={`${
-              open && "hidden"
-            } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+            className={`${open && "hidden"
+              } absolute left-48 bg-white font-semibold whitespace-pre text-dark-grey rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
           >
             All Posts
           </h2>
@@ -188,9 +180,8 @@ const SideBar = () => {
 
       {/* SearchInput field for channels */}
       <div
-        className={`whitespace-pre bg-white rounded-md border-dark-grey border duration-500 mt-11 mb-4 ${
-          !open && "opacity-0 overflow-hidden"
-        }`}
+        className={`whitespace-pre bg-white rounded-md border-dark-grey border duration-500 mt-11 mb-4 ${!open && "opacity-0 overflow-hidden"
+          }`}
       >
         <div className="flex relative items-center h-12 hover:transition">
           <input
@@ -217,9 +208,8 @@ const SideBar = () => {
               style={{
                 transitionDelay: `400ms`,
               }}
-              className={`whitespace-pre font-semibold text-sm md:text-lg duration-500 ${
-                !open && "opacity-0 overflow-hidden  "
-              }`}
+              className={`whitespace-pre font-semibold text-sm md:text-lg duration-500 ${!open && "opacity-0 overflow-hidden  "
+                }`}
             >
               Suggested Channels
             </h2>
@@ -237,9 +227,8 @@ const SideBar = () => {
           style={{
             transitionDelay: `400ms`,
           }}
-          className={`whitespace-pre font-semibold mb-4 mt-3 mx-3 text-sm md:text-lg duration-500 ${
-            !open && "opacity-0 overflow-hidden mb-0"
-          }`}
+          className={`whitespace-pre font-semibold mb-4 mt-3 mx-3 text-sm md:text-lg duration-500 ${!open && "opacity-0 overflow-hidden mb-0"
+            }`}
         >
           Suggested Channels
         </h2>
