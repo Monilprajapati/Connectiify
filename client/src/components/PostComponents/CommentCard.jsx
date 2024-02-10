@@ -6,7 +6,7 @@ import { useUserContext } from '../../contexts/userContext';
 import { updateComment } from '../../services/commentServices';
 import { useSelector } from "react-redux";
 
-const CommentCard = ({ key, commentId, userAvatar, username, description, upvotes, downvotes, reply, owner, createdAt }) => {
+const CommentCard = ({ commentId, userAvatar, username, description, upvotes, downvotes, reply, owner, createdAt }) => {
     const { token } = useUserContext();
     const user = useSelector(state => state.authReducer.user);
     const [upvoteCount, setUpvoteCount] = useState(upvotes.length);

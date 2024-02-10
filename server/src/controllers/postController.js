@@ -8,10 +8,10 @@ const getPosts = asyncHandler(
     async (req, res) => {
         const { room } = req.user
         const posts = await Post.find(
-            { room , role: "user"}
+            { room, role: "user" }
 
         )
-        console.log("controller:" + posts)
+        // console.log("controller:" + posts)
         return res.status(200).json(
             new ApiResponse(200, posts, "Posts retrieved successfully")
         )
@@ -127,20 +127,23 @@ const updatePost = asyncHandler(async (req, res) => {
 
 const deletePost = asyncHandler(
     async (req, res) => {
-        const { postId } = req.params
-        const { _id } = req.user
-        const post = await Post.findById(postId)
-        if (!post)
-            throw new ApiError(404, "Post not found")
-        if (post.owner.toString() !== _id.toString())
-            throw new ApiError(401, "You are not authorized to delete this post")
-        await post.deleteOne()
+        const { postId } = req.params;
+        const { _id } = req.user;
+
+        const post = await Post.findById(postId);
+        if (!post) {
+            throw new ApiError(404, "Post not found");
+        }
+        if (post.owner.toString() !== _id.toString()) {
+            throw new ApiError(401, "You are not authorized to delete this post");
+        }
+
+        await post.deleteOne();
+
         return res.status(200).json(
             new ApiResponse(200, null, "Post deleted successfully")
-        )
-    }
-
-)
+        );
+    });
 
 export {
     getPosts,
