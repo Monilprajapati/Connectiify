@@ -11,6 +11,7 @@ import { PORT } from "./src/config/serverConfig.js";
 import authRoutes from "./src/routes/auth.routes.js";
 import userRoutes from "./src/routes/user.routes.js";
 import postRoutes from "./src/routes/post.routes.js";
+import commentRoutes from "./src/routes/comment.routes.js";
 
 //* Defination of legend function
 const setUpAndStartServer = async () => {
@@ -32,6 +33,7 @@ const setUpAndStartServer = async () => {
 
         //- routes use
         app.use("/api/v1/auth", authRoutes);
+        app.use("/api/v1/comment", commentRoutes);
         app.use("/api/v1/user", userRoutes);
         app.use("/api/v1/post", postRoutes);
 

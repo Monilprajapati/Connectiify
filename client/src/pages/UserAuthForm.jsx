@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 const UserAuthForm = ({ type }) => {
   const [formData, setFormData] = useState({
+    role: "user",
     email: "",
     password: "",
     confirmPassword: "",
