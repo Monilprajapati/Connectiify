@@ -28,6 +28,7 @@ const CreatePost = () => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
