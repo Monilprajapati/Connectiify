@@ -16,7 +16,7 @@
     }
 
     .navbar {
-        @apply z-10 sticky top-0 flex items-center justify-between w-full px-[5vw] py-4 h-[70px] xl:h-[80px] border-b border-grey bg-darkslategray;
+        @apply z-10 sticky top-0 flex items-center justify-between w-full px-[5vw] py-4 h-[70px] border-b border-grey bg-darkslategray;
     }
 
     .h-cover {

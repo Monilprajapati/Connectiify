@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkAuthStatus } from "./app/slices/authSlice";
 import Navbar from "./components/Navbar";
+import { UserContextProvider } from "./contexts/userContext";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,10 @@ const App = () => {
         </div>
       ) : (
         <>
-          <Navbar />
-          <CustomRoutes />
+          <UserContextProvider>
+            <Navbar />
+            <CustomRoutes />
+          </UserContextProvider>
         </>
       )}
     </>
