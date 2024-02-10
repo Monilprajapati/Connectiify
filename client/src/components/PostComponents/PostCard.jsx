@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
-import updatePost from "../../services/updatePost";
+import {updatePost} from "../../services/postServices";
 
 const PostCard = ({
   postId,
   description,
+  userAvatar,
+  username,
   image,
   upvotes,
   downvotes,
@@ -20,7 +22,7 @@ const PostCard = ({
   const [seeMore, setSeeMore] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(upvotes.length);
   const [downvoteCount, setDownvoteCount] = useState(downvotes.length);
-  const [postOwner, setPostOwner] = useState();
+  // const [postOwner, setPostOwner] = useState();
   const [isUpvoteClicked, setIsUpvoteClicked] = useState(
     upvotes.includes(user?._id)
   );
@@ -65,24 +67,24 @@ const PostCard = ({
     }
   };
 
-  useEffect(() => {
-    const user = allusers.find((user) => user._id === owner);
-    setPostOwner(user);
-  }, [allusers, user]);
+  // useEffect(() => {
+  //   const user = allusers.find((user) => user._id === owner);
+  //   setPostOwner(user);
+  // }, [allusers, user]);
 
   return (
     <div className=" w-full bg-lightGray px-4 md:px-6 py-6 pb-3 flex flex-col justify-between rounded-md">
       {/* userInfo */}
       <div className="flex gap-3 items-center mb-3">
         <img
-          src={postOwner?.userAvatar}
+          src={userAvatar}
           alt={`avatar`}
           className="w-14 h-14 object-cover border border-white rounded-full"
         />
         <div className="w-full flex justify-between">
           <div className="flex flex-col">
             <p className="font-medium text-lg text-ascent-1">
-              {postOwner?.username}
+              {username}
             </p>
             <span className="text-sm opacity-70">
               {moment(createdAt).fromNow()}

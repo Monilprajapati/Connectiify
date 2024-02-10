@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { checkAuthStatus } from "./app/slices/authSlice";
 import Navbar from "./components/Navbar";
 import { UserContextProvider } from "./contexts/userContext";
+import { PostContextProvider } from "./contexts/postContext";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,10 @@ const App = () => {
       ) : (
         <>
           <UserContextProvider>
-            <Navbar />
-            <CustomRoutes />
+            <PostContextProvider>
+              <Navbar />
+              <CustomRoutes />
+            </PostContextProvider >
           </UserContextProvider>
         </>
       )}

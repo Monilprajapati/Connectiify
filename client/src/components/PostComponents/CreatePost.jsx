@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
+import { usePostContext } from "../../contexts/postContext";
 import { useUserContext } from "../../contexts/userContext";
 import { BiImages } from "react-icons/bi";
-import createPostApi from "../../services/createPostApi";
+import {createPostApi} from "../../services/postServices";
 import { Toaster, toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import PostPreview from "./PostPreview";
@@ -12,7 +13,8 @@ const CreatePost = () => {
     const [isPreviewVisible, setIsPreviewVisible] = useState(false);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { token, open, setPosts } = useUserContext();
+    const { token, open } = useUserContext();
+    const { setPosts } = usePostContext();
     const [postData, setPostData] = useState({
         description: "",
         tag: "tag01",
