@@ -22,6 +22,10 @@ export const imageValidator = asyncHandler(async (req, res, next) => {
 
     const prompt = "I have provided you an image, you have to give me response either 'Yes' or 'No' based on the image, that image is contains nudity or not. I will use this response to further process the image or not, so please provide me 'Yes' or 'No' based on the image. Thank you.";
 
+    if (!req.files?.postImage[0]?.path) {
+        next()
+    }
+
     const imageParts = [
         fileToGenerativePart(req.files?.postImage[0]?.path, "image/jpeg"),
     ];

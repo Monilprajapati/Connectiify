@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const Posts = () => {
   const { token, open } = useUserContext();
-  const { posts, setPosts } = usePostContext();
+  const { posts, setPosts, search, setSearch } = usePostContext();
   const [loading, setLoading] = useState(false);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
@@ -21,7 +21,17 @@ const Posts = () => {
     setLoading(false);
   }, [setPosts, isAuthenticated]);
 
-  // console.log("post:"+posts[0]._id)
+  const tempPosts = posts.filter((post) => {
+    if (search === "") {
+      return post;
+    }
+
+    // Search in any tag
+    return post.tag[0].split(',').some(tag =>
+      tag.toLowerCase().includes(search.toLowerCase())
+    );
+  });
+
 
   return (
     <>
@@ -34,7 +44,7 @@ const Posts = () => {
           className={`mb-2 py-1 px-2 md:px-11 ${open ? "lg:px-4 xl:px-36" : "lg:px-14 xl:px-40"
             } flex flex-col gap-5`}
         >
-          {posts
+          {tempPosts
             .slice()
             .reverse()
             .map((post) => {

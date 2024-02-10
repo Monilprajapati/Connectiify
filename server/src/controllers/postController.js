@@ -8,10 +8,9 @@ const getPosts = asyncHandler(
     async (req, res) => {
         const { room } = req.user
         const posts = await Post.find(
-            { room , role: "user"}
+            { room, role: "user" }
 
         )
-        console.log("controller:" + posts)
         return res.status(200).json(
             new ApiResponse(200, posts, "Posts retrieved successfully")
         )

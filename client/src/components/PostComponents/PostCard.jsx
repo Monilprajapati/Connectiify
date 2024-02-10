@@ -101,7 +101,7 @@ const PostCard = ({
 
       {tag && (
         <div className="flex gap-2 items-center mb-3">
-          {tag.map((tag, index) => (
+          {tag[0].split(',').map((tag, index) => (
             // eslint-disable-next-line react/jsx-key
             <span
               key={index}

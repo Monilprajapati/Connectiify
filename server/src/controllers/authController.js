@@ -19,7 +19,7 @@ const register = asyncHandler(
             throw new ApiError(409, "User with email already exists")
 
         const excludedDomains = [
-            "gmail.com",
+            // "gmail.com",
             "yahoo.com",
             "hotmail.com",
             "outlook.com",

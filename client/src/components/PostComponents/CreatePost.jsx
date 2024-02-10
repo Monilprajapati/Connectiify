@@ -35,8 +35,10 @@ const CreatePost = () => {
             const formData = new FormData();
             formData.append("postImage", file);
             formData.append("description", postData.description);
-            formData.append("post", postData.tag);
+            formData.append("tag", tags);
+            console.log("tags", tags);
             const response = await createPostApi(formData, token);
+            // const response = false
 
             if (response) {
                 toast.success("Post created successfully");

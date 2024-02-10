@@ -16,7 +16,7 @@ function sendMail(userEmail, token) {
     const mailOptions = {
         from: 'noreply.campusvibes@gmail.com',
         to: userEmail,
-        subject: 'Welcome to CampusVibess - Verify Your Email',
+        subject: 'Welcome to Connectiify - Verify Your Email',
         html: `
         <div style="background-color: #f1f1f1; padding: 20px;">
         <h2 style="color: #333333; font-family: Arial, sans-serif;">Welcome to Connectiify!</h2>
