@@ -36,6 +36,10 @@ const postSchema = new Schema({
         lowercase: true,
         trim: true,
     },
+    role: {
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: true
 });

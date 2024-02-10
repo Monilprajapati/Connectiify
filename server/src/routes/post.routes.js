@@ -3,6 +3,7 @@ import { Router } from "express";
 import { getPosts, createPost, updatePost, deletePost } from "../controllers/postController.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
+import { imageValidator } from "../middlewares/imageValidator.middleware.js";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.route('/create').post(
             maxCount: 1
         },
     ]),
+    imageValidator,
     createPost
 )
 
