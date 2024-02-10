@@ -18,7 +18,39 @@ const register = asyncHandler(
         if (existedUser)
             throw new ApiError(409, "User with email already exists")
 
-        const room = email.split('@')[1]
+        const excludedDomains = [
+            "gmail.com",
+            "yahoo.com",
+            "hotmail.com",
+            "outlook.com",
+            "aol.com",
+            "icloud.com",
+            "zoho.com",
+            "mail.com",
+            "protonmail.com",
+            "yandex.com",
+            "gmx.com",
+            "tutanota.com",
+            "mail.ru",
+            "rambler.ru",
+            "bk.ru",
+            "list.ru",
+            "inbox.ru",
+            "yandex.ru",
+            "ya.ru",
+            "narod.ru",
+            "hotmail.ru",
+            "live.ru",
+            // many more
+        ];
+
+        const room = email.split('@')[1];
+        const domain = room.toLowerCase();
+
+        if (excludedDomains.includes(domain)) {
+            throw new ApiError(400, "Please provide university email")
+        }
+
         const username = nameGenerator()
         const user = await User.create({
             username,
