@@ -46,7 +46,7 @@ const ChatSection = () => {
             className="chatArea h-full pb-3 mt-2 pl-2 flex gap-1.5 flex-col scroll-smooth overflow-auto mx-4 md:mx-7 lg:mx-24 xl:mx-48"
           >
             {!currentChat?.isChannel ||
-            connectedRooms.includes(currentChat?.chatName) ? (
+              connectedRooms.includes(currentChat?.chatName) ? (
               <>
                 {chatMessages === null ? (
                   <div className="text-center">Loading...</div>

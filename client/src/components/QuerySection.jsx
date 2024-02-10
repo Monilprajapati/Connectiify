@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { TbSend } from "react-icons/tb";
+import QueryMessage from "./QueryMessage";
 
 const QuerySection = () => {
   const [message, setMessage] = useState("");
@@ -43,13 +44,13 @@ const QuerySection = () => {
             )}
           </div>
           <div className="queries">
-           <QuerySection
-           content="How to prepare for placements?"
-            username="John Doe"
-            upvotes={5}
-            downvotes={0}
-           />
-          </div>  
+            <QueryMessage
+              content="How to prepare for placements?"
+              username="John Doe"
+              upvotes={5}
+              downvotes={0}
+            />
+          </div>
         </div>
       </div>
     </div>
