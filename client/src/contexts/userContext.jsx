@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
+  const [role, setRole] = useState("");
   const [channels, setChannels] = useState([]);
   const [Loading, setLoading] = useState(false);
   const [token, setToken] = useState(() => {
@@ -14,11 +15,13 @@ const UserContextProvider = ({ children }) => {
   const isAuthenticated = useSelector(
     (state) => state.authReducer.isAuthenticated
   );
-
+    console.log("Role : ", role);
 
   return (
     <UserContext.Provider
       value={{
+        role,
+        setRole,
         token,
         setToken,
         channels,

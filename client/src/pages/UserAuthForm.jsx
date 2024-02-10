@@ -8,9 +8,9 @@ import authUser from "../services/authServices";
 import { setIsAuthenticated, checkAuthStatus } from "../app/slices/authSlice";
 import { useDispatch } from "react-redux";
 
-
 const UserAuthForm = ({ type }) => {
   const [formData, setFormData] = useState({
+    role: "user",
     email: "",
     password: "",
     confirmPassword: "",
@@ -23,7 +23,6 @@ const UserAuthForm = ({ type }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
 
   const userAuth = async (serverRoute, formData) => {
     if (serverRoute === "login") {
@@ -114,6 +113,7 @@ const UserAuthForm = ({ type }) => {
           <h1 className="text-4xl font-lato capitalize text-center mb-24">
             {type === "login" ? "Welcome back" : "Create an account"}
           </h1>
+          {/* <div className="mb-4">{type === "register" ? <RoleDropdown /> : null}</div> */}
           <InputBox
             name="email"
             type="email"

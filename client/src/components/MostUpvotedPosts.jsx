@@ -1,5 +1,4 @@
 import React from "react";
-import { useUserContext } from "../contexts/userContext";
 import SideSectionPostCard from "../components/SideSectionPostCard";
 const MostUpvotedPosts = () => {
   const { posts } = useUserContext();
