@@ -85,6 +85,18 @@ const userSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    role: {
+        type: String,
+        required: true,
+    },
+    isAlumniVerified: {
+        type: Boolean,
+        default: false,
+    },
+    degree: {
+        type: String,
+        default: "",
+    }
 });
 
 userSchema.pre("save", async function (next) {
