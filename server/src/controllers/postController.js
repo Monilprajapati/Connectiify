@@ -28,11 +28,13 @@ const createPost = asyncHandler(
         // console.log('Image : ', imageLocalPath)
 
         // if no image is provided, throw an error
-        if (!imageLocalPath)
-            throw new ApiError(400, "Image not provided")
+        // if (!imageLocalPath)
+        // throw new ApiError(400, "Image not provided")
 
         // upload the image on cloudinary
-        const postImage = await uploadOnCloudinary(imageLocalPath)
+        let postImage = ""
+        if (imageLocalPath)
+            postImage = await uploadOnCloudinary(imageLocalPath)
         // console.log(postImage)
 
         if (!postImage)
@@ -44,7 +46,9 @@ const createPost = asyncHandler(
             tag,
             room,
             role: "user",
-            owner: _id
+            owner: _id,
+            username: req.user.username,
+            userAvatar: req.user.avatar,
         })
 
         return res.status(201).json(
