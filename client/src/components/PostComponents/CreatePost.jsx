@@ -5,7 +5,7 @@ import createPostApi from "../../services/createPostApi";
 import { Toaster, toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import PostPreview from "./PostPreview";
-import TagsInput from "./TagsInput";
+import TagsInput from "../TagsInput";
 
 const CreatePost = () => {
     const [imageUrl, setImageUrl] = useState(null);
