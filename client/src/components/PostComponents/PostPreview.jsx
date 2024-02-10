@@ -1,11 +1,11 @@
 import React from 'react'
 import { IoIosClose } from "react-icons/io";
 
-const PostPreview = ({ imageUrl, setIsPreviewVisible }, ref) => {
+const PostPreview = ({ imageUrl, setIsPreviewVisible, setImageUrl }, ref) => {
     return (
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-10">
             <div className='flex justify-end'>
-                <CloseIcon setIsPreviewVisible={setIsPreviewVisible} />
+                <CloseIcon setIsPreviewVisible={setIsPreviewVisible} setImageUrl={setImageUrl} />
             </div>
             <div className="flex">
                 <div className="flex w-full justify-center  overflow-hidden rounded-lg px-12">
@@ -41,7 +41,7 @@ const PostPreview = ({ imageUrl, setIsPreviewVisible }, ref) => {
 export default React.forwardRef(PostPreview);
 
 
-const CloseIcon = ({ setIsPreviewVisible }) => {
+const CloseIcon = ({ setIsPreviewVisible, setImageUrl }) => {
     return (
         <div
             className='text-black flex justify-end mr-1 w-fit items-end cursor-pointer hover:bg-darkslategray hover:text-white hover:rounded-3xl m-2'

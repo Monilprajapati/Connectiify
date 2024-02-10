@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { usePostContext } from "../../contexts/postContext";
 import { useUserContext } from "../../contexts/userContext";
 import { BiImages } from "react-icons/bi";
-import {createPostApi} from "../../services/postServices";
+import { createPostApi } from "../../services/postServices";
 import { Toaster, toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import PostPreview from "./PostPreview";
@@ -40,7 +40,7 @@ const CreatePost = () => {
 
             if (response) {
                 toast.success("Post created successfully");
-                setPosts((prevPosts) => [...prevPosts,response.data]);
+                setPosts((prevPosts) => [...prevPosts, response.data]);
             }
         } catch (error) {
             setPostData({ description: "", tag: "tag01" });
@@ -133,7 +133,7 @@ const CreatePost = () => {
                     </button>
                 </div>
             </form>
-            {isPreviewVisible && <PostPreview imageUrl={imageUrl} setIsPreviewVisible={setIsPreviewVisible} ref={postInputRef} />}
+            {isPreviewVisible && <PostPreview imageUrl={imageUrl} setImageUrl={setImageUrl} setIsPreviewVisible={setIsPreviewVisible} ref={postInputRef} />}
         </div>
     );
 };
