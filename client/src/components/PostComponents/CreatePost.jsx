@@ -31,14 +31,14 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (postData.description.length === 0) {
+        return toast.error("Please add a description");
+      }
       if (!file) {
         return toast.error("Please select an image");
       }
       if (tags.length === 0) {
         return toast.error("Please add tags");
-      }
-      if (postData.description.length === 0){
-        return toast.error("Please add a description");
       }
       setLoading(true);
       const formData = new FormData();
@@ -97,7 +97,6 @@ const CreatePost = () => {
             placeholder="What's on your mind...."
             value={postData.description}
             onChange={handleChange}
-            required
           />
         </div>
 
