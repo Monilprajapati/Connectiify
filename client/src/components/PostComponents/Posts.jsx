@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const Posts = () => {
   const { token, open } = useUserContext();
-  const { posts, setPosts } = usePostContext();
+  const { posts, setPosts, search, setSearch } = usePostContext();
   const [loading, setLoading] = useState(false);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
@@ -21,7 +21,8 @@ const Posts = () => {
     setLoading(false);
   }, [setPosts, isAuthenticated]);
 
-  // console.log("post:"+posts[0]._id)
+
+
 
   return (
     <>

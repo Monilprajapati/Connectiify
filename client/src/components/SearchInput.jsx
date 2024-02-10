@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
+import { usePostContext } from "../contexts/postContext";
 
 const SearchInput = () => {
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     console.log(e.target.value);
     setSearch(e.target.value);
   };
+  const { posts, search, setSearch } = usePostContext()
+
   return (
     <>
       <div className="xl:flex hidden relative font-plusSans h-10 mx-9 lg:w-1/2 rounded-3xl bg-white">

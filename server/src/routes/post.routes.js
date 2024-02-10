@@ -14,6 +14,7 @@ router.route('/all').get(
 
 router.route('/create').post(
     verifyJWT,
+    // upload.any(),
     upload.fields([
         {
             name: 'postImage', // should match the HTML file input name

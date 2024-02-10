@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 // import { useDispatch } from "react-redux";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
-import {updatePost} from "../../services/postServices";
+import { updatePost } from "../../services/postServices";
 
 const PostCard = ({
   postId,
@@ -99,7 +99,7 @@ const PostCard = ({
 
       {tag && (
         <div className="flex gap-2 items-center mb-3">
-          {tag.map((tag, index) => (
+          {tag[0].split(',').map((tag, index) => (
             // eslint-disable-next-line react/jsx-key
             <span
               key={index}
@@ -141,11 +141,10 @@ const PostCard = ({
         <div className="flex gap-3 items-center text-base cursor-pointer">
           <button
             onClick={handleUpvote}
-            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 group hover:border-green ${
-              isUpvoteClicked
-                ? "border-green border-opacity-100"
-                : "border-dark-grey border-opacity-35 "
-            }`}
+            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 group hover:border-green ${isUpvoteClicked
+              ? "border-green border-opacity-100"
+              : "border-dark-grey border-opacity-35 "
+              }`}
           >
             <BiUpvote size={20} />
             {upvoteCount}
@@ -153,11 +152,10 @@ const PostCard = ({
 
           <button
             onClick={handleDownvote}
-            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 border-dark-grey group hover:border-red ${
-              isDownvoteClicked
-                ? "border-red border-opacity-100"
-                : "border-dark-grey border-opacity-35"
-            }`}
+            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 border-dark-grey group hover:border-red ${isDownvoteClicked
+              ? "border-red border-opacity-100"
+              : "border-dark-grey border-opacity-35"
+              }`}
           >
             <BiDownvote size={20} />
             {Math.abs(downvoteCount)}

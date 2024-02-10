@@ -5,7 +5,7 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    tag: [String],
+    tag: [],
     image: String,
     upvotes: [
         {
