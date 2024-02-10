@@ -2,15 +2,70 @@ import React from "react";
 import { useState } from "react";
 import { TbSend } from "react-icons/tb";
 import QueryMessage from "./QueryMessage";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const QuerySection = () => {
   const [message, setMessage] = useState("");
-
+  const [queries, setQueries] = useState([
+    {
+      content: "How to persue a master degree in Computer Science?",
+      username: "backporridge",
+      upvotes: 10,
+      downvotes: 2,
+    },
+    {
+      content: "How to prepare for GATE?",
+      username: "returningmus",
+      upvotes: 5,
+      downvotes: 1,
+    },
+    {
+      content: "Is there any scope for freelancing in Web Development?",
+      username: "uncommittedh",
+      upvotes: 7,
+      downvotes: 0,
+    },
+    {
+      content: "What does it take to get into a top tier university in the US?",
+      username: "starvedwhir",
+      upvotes: 5,
+      downvotes: 1,
+    },
+    {
+      content: "Is any alumni working in FAANG?",
+      username: "abcrayone",
+      upvotes: 8,
+      downvotes: 0,
+    }
+  ]);
+  const user = useSelector((state) => state.authReducer.user);
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && message.length > 0) {
       e.preventDefault();
-      console.log("send message");
+      handleSubmit();
     }
+  };
+
+  useEffect(() => {
+    const data = localStorage.getItem("queries");
+    if (data) {
+      setQueries(JSON.parse(data));
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    setQueries([
+      {
+        content: message,
+        username: user.username,
+        upvotes: 0,
+        downvotes: 0,
+      },
+      ...queries,
+    ]);
+    localStorage.setItem("queries", JSON.stringify(queries));
+    setMessage("");
   };
 
   return (
@@ -35,21 +90,16 @@ const QuerySection = () => {
             {message.length > 0 && (
               <button
                 className="btn absolute right-0 mr-2 bg-black text-white p-2 rounded-md"
-                onClick={() => {
-                  console.log("send message");
-                }}
+                onClick={handleSubmit}
               >
                 <TbSend className="text-xl cursor-pointer" />
               </button>
             )}
           </div>
           <div className="queries">
-            <QueryMessage
-              content="How to prepare for placements?"
-              username="John Doe"
-              upvotes={5}
-              downvotes={0}
-            />
+            {queries.map((query, index) => (
+              <QueryMessage key={index} {...query} />
+            ))}
           </div>
         </div>
       </div>

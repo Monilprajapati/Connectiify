@@ -81,6 +81,7 @@ export const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("currentChat");
       localStorage.removeItem("connectedRooms");
+      localStorage.removeItem("queries");
       state.user = {};
       state.isAuthenticated = false;
     },

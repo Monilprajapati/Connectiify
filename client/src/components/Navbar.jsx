@@ -36,7 +36,7 @@ const Navbar = () => {
         {authStates && (
           <div className="hidden md:flex md:w-2/3 justify-end items-center gap-4">
           <SearchInput />
-          <Link className="bg-white px-2.5 font-semibold py-2.5 xl:py-3 xl:px-3 rounded-md" to="/alumni-connect">
+          <Link className="bg-white px-2.5 font-semibold py-2.5 xl:py-3 xl:px-3 rounded-md" to="/alumni">
           Alumni Connect
           </Link>
           <Dropdown />
