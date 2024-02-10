@@ -16,7 +16,7 @@ const links = [
 const Dropdown = ({mobile}) => {
   const [open, setOpen] = useState(false);
   const user = useSelector((state) => state.authReducer.user);
-  console.log(user);
+  // console.log(user);
   // console.log(open);
   const dispatch = useDispatch();
   return (

@@ -6,6 +6,7 @@ import { checkAuthStatus } from "./app/slices/authSlice";
 import Navbar from "./components/Navbar";
 import { UserContextProvider } from "./contexts/userContext";
 import { PostContextProvider } from "./contexts/postContext";
+import { ChatContextProvider } from "./contexts/chatContext";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,11 @@ const App = () => {
         <>
           <UserContextProvider>
             <PostContextProvider>
-              <Navbar />
-              <CustomRoutes />
-            </PostContextProvider >
+              <ChatContextProvider>
+                <Navbar />
+                <CustomRoutes />
+              </ChatContextProvider>
+            </PostContextProvider>
           </UserContextProvider>
         </>
       )}

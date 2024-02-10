@@ -17,6 +17,7 @@ import {
   Gamepad2,
 } from "lucide-react";
 import { useUserContext } from "../contexts/userContext";
+import { useChatContext } from "../contexts/chatContext";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../app/slices/authSlice";
 import { Toaster, toast } from "react-hot-toast";
@@ -26,7 +27,7 @@ const SideBar = () => {
   const [mobile, setMobile] = useState(window.innerWidth < 700 ? true : false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { connect, toggleChat } = useChatContext();
+  const { connect, toggleChat } = useChatContext();
   const channels = [
     { name: "Tech", link: "/channel", icon: Laptop },
     { name: "Fun", link: "/channel", icon: Dices },
@@ -61,9 +62,9 @@ const SideBar = () => {
             e.preventDefault();
             if (mobile) setOpen(!open);
             navigate(`/channel`);
-            // toggleChat(currentChat);
-            // connect(currentChat.chatName);
-            // localStorage.setItem("currentChat", JSON.stringify(currentChat));
+            toggleChat(currentChat);
+            connect(currentChat.chatName);
+            localStorage.setItem("currentChat", JSON.stringify(currentChat));
           }}
           key={channel}
         >
@@ -104,8 +105,8 @@ const SideBar = () => {
             e.preventDefault();
             if (mobile) setOpen(!open);
             navigate(`/channel`);
-            // toggleChat(currentChat);
-            // localStorage.setItem("currentChat", JSON.stringify(currentChat));
+            toggleChat(currentChat);
+            localStorage.setItem("currentChat", JSON.stringify(currentChat));
           }}
           key={channel}
         >
