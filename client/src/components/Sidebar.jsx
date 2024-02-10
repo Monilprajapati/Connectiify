@@ -252,7 +252,7 @@ const SideBar = () => {
       <button
         className="md:hidden bg-white px-2.5 w-full mt-3 font-semibold py-2.5 xl:py-3 xl:px-3 rounded-md"
         onClick={() => {
-          navigate("/alumniconnect");
+          navigate("/alumni");
           setOpen(!open);
         }}
       >
