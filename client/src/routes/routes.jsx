@@ -30,7 +30,7 @@ export default function CustomRoutes() {
         />
 
         <Route
-          path="/alumniconnect"
+          path="/alumni"
           element={
             <PrivateRoute>
               <AlumniConnect />
