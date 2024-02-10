@@ -27,7 +27,7 @@ const Posts = () => {
     }
 
     // Search in any tag
-    return post.tag[0].split(',').some(tag =>
+    return post?.tag[0].split(',').some(tag =>
       tag.toLowerCase().includes(search.toLowerCase())
     );
   });
