@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 // import { useDispatch } from "react-redux";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
-import {updatePost} from "../../services/postServices";
+import { updatePost } from "../../services/postServices";
+import Comments from "./Comments";
 
 const PostCard = ({
   postId,
@@ -20,18 +21,19 @@ const PostCard = ({
   tag,
   createdAt,
 }) => {
-  const { token, allusers } = useUserContext();
+  const { token } = useUserContext();
   const user = useSelector(state => state.authReducer.user)
-
   const [seeMore, setSeeMore] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(upvotes.length);
   const [downvoteCount, setDownvoteCount] = useState(downvotes.length);
+  const [commentCount, setCommentCount] = useState(comments.length);
+  const [isCommentClicked, setIsCommentClicked] = useState(false);
   // const [postOwner, setPostOwner] = useState();
   const [isUpvoteClicked, setIsUpvoteClicked] = useState(
-    upvotes.includes(user?._id)
+    upvotes.includes(user._id)
   );
   const [isDownvoteClicked, setIsDownvoteClicked] = useState(
-    downvotes.includes(user?._id)
+    downvotes.includes(user._id)
   );
 
 
@@ -141,11 +143,10 @@ const PostCard = ({
         <div className="flex gap-3 items-center text-base cursor-pointer">
           <button
             onClick={handleUpvote}
-            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 group hover:border-green ${
-              isUpvoteClicked
-                ? "border-green border-opacity-100"
-                : "border-dark-grey border-opacity-35 "
-            }`}
+            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 group hover:border-green ${isUpvoteClicked
+              ? "border-green border-opacity-100"
+              : "border-dark-grey border-opacity-35 "
+              }`}
           >
             <BiUpvote size={20} />
             {upvoteCount}
@@ -153,22 +154,27 @@ const PostCard = ({
 
           <button
             onClick={handleDownvote}
-            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 border-dark-grey group hover:border-red ${
-              isDownvoteClicked
-                ? "border-red border-opacity-100"
-                : "border-dark-grey border-opacity-35"
-            }`}
+            className={`py-1 px-2 w-16 rounded-full flex items-center gap-2 border-2 border-dark-grey group hover:border-red ${isDownvoteClicked
+              ? "border-red border-opacity-100"
+              : "border-dark-grey border-opacity-35"
+              }`}
           >
             <BiDownvote size={20} />
             {Math.abs(downvoteCount)}
           </button>
         </div>
 
-        <p className="flex gap-2 items-center text-base cursor-pointer">
+        <button
+          className="flex gap-2 items-center text-base cursor-pointer"
+          onClick={() => { setIsCommentClicked(!isCommentClicked) }}>
           <BiComment size={20} />
-          {comments.length}
-        </p>
+          {commentCount}
+        </button>
       </div>
+      {/* {comments} */}
+      {isCommentClicked &&
+        <Comments postId={postId} setCommentCount={setCommentCount} />
+      }
     </div>
   );
 };
