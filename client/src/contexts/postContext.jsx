@@ -4,14 +4,24 @@ import { useSelector } from "react-redux";
 const PostContext = createContext();
 
 const PostContextProvider = ({ children }) => {
-    const [posts, setPosts]= useState([])
+  const [posts, setPosts] = useState([])
+  const [myposts, setMyPosts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState("");
+
 
 
   return (
     <PostContext.Provider
       value={{
         posts,
-        setPosts
+        myposts,
+        setPosts,
+        setMyPosts,
+        loading,
+        setLoading,
+        search,
+        setSearch
       }}
     >
       {children}

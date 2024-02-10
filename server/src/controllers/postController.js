@@ -11,10 +11,26 @@ const getPosts = asyncHandler(
             { room, role: "user" }
 
         )
-        // console.log("controller:" + posts)
+
         return res.status(200).json(
             new ApiResponse(200, posts, "Posts retrieved successfully")
         )
+    }
+)
+
+const getMyPosts = asyncHandler(
+    async (req, res) => {
+        const { userId } = req.params;
+
+        const posts = await Post.find({ owner: userId });
+
+        if (!posts) {
+            throw new ApiError(404, "No posts found for this user");
+        }
+
+        return res.status(200).json(
+            new ApiResponse(200, posts, "User's posts retrieved successfully")
+        );
     }
 )
 
@@ -147,6 +163,7 @@ const deletePost = asyncHandler(
 
 export {
     getPosts,
+    getMyPosts,
     updatePost,
     createPost,
     deletePost

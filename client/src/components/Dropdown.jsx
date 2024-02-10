@@ -64,6 +64,7 @@ const Dropdown = ({mobile}) => {
                       <Link
                         key={id}
                         to={url}
+                        onClick={() => setOpen(false)}
                         className="flex px-3 py-2 text-md font-medium border-b border-black border-opacity-40 last:border-none"
                       >
                         {text}

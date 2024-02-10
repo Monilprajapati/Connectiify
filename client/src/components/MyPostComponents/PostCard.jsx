@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 // import { useDispatch } from "react-redux";
-import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
+import { BiUpvote, BiDownvote, BiComment, BiTrash } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
 import { updatePost } from "../../services/postServices";
+import { deletePost } from "../../services/postServices";
+import { usePostContext } from "../../contexts/postContext"
 import Comments from "./Comments";
 
 const PostCard = ({
@@ -35,6 +37,9 @@ const PostCard = ({
   const [isDownvoteClicked, setIsDownvoteClicked] = useState(
     downvotes.includes(user._id)
   );
+  // const { posts, setPosts } = usePostContext();
+  const { myposts, setMyPosts } = usePostContext();
+
 
 
   const handleUpvote = async () => {
@@ -78,16 +83,25 @@ const PostCard = ({
   //   setPostOwner(user);
   // }, [allusers, user]);
 
+  const handleDelete = async () => {
+    try {
+      await deletePost(postId, token);
+      // Implement logic to remove the post from UI after successful deletion
+      setMyPosts(prevPosts => prevPosts.filter(post => post.postId !== postId));
+    } catch (error) {
+      console.error("Error deleting post:", error.message);
+    }
+  };
+
   return (
-    <div className=" w-full bg-lightGray px-4 md:px-6 py-6 pb-3 flex flex-col justify-between rounded-md">
-      {/* userInfo */}
+    <div className="w-full bg-lightGray px-4 md:px-6 py-6 pb-3 flex flex-col justify-between rounded-md">
       <div className="flex gap-3 items-center mb-3">
         <img
           src={userAvatar}
           alt={`avatar`}
           className="w-14 h-14 object-cover border border-white rounded-full"
         />
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between items-center">
           <div className="flex flex-col">
             <p className="font-medium text-lg text-ascent-1">
               {username}
@@ -96,9 +110,16 @@ const PostCard = ({
               {moment(createdAt).fromNow()}
             </span>
           </div>
+          {owner === user._id && (
+            <button
+              onClick={handleDelete}
+              className="text-sm text-red-600 hover:text-red-800"
+            >
+              <BiTrash size={20} />
+            </button>
+          )}
         </div>
       </div>
-
       {tag && (
         <div className="flex gap-2 items-center mb-3">
           {tag[0]?.split(',').map((tag, index) => (

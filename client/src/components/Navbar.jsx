@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useSelector } from "react-redux";
 import { MdGroups } from "react-icons/md";
-
+import { useUserContext } from "../contexts/userContext";
 
 const Navbar = () => {
-
+  const { open, setOpen } = useUserContext();
   // this state will tell if user is authenticated or not
   const authStates = useSelector((state) => state.authReducer.isAuthenticated);
   return (
@@ -34,10 +34,10 @@ const Navbar = () => {
           </div>
         )}
         {authStates && (
-          <div className="hidden md:flex md:w-2/3 justify-end items-center gap-5">
+          <div className="hidden md:flex md:w-2/3 justify-end items-center gap-4">
           <SearchInput />
           <Link className="bg-white px-2.5 font-semibold py-2.5 xl:py-3 xl:px-3 rounded-md" to="/alumniconnect">
-          Alumni Connet
+          Alumni Connect
           </Link>
           <Dropdown />
           </div>

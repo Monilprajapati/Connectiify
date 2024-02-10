@@ -1,7 +1,9 @@
 import React from "react";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import moment from "moment";
+import { useSelector } from "react-redux";
 const SideSectionPostCard = ({
+  username,
   description,
   image,
   upvotes,
@@ -36,7 +38,7 @@ const SideSectionPostCard = ({
       </div>
       <div className="user text-sm flex -mb-1 px-1 justify-between">
         <span className="text-sm font-medium hover:underline">
-          {user?.username}
+          {username}
         </span>
         <span className="text-gray-400 text-xs">
           {" "}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostCard from "./PostCard";
 import { useNavigate } from "react-router-dom";
-import { getPostData } from "../../services/postServices";
+import { getMyPostData } from "../../services/postServices";
 import { useUserContext } from "../../contexts/userContext";
 import { usePostContext } from "../../contexts/postContext";
 // import { ThreeCircles } from "react-loader-spinner";
@@ -9,19 +9,20 @@ import { useSelector } from "react-redux";
 
 const Posts = () => {
   const { token, open } = useUserContext();
-  const { posts, setPosts, search, setSearch } = usePostContext();
+  const { myposts, setMyPosts, search, setSearch } = usePostContext();
   const [loading, setLoading] = useState(false);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const user = useSelector((state) => state.authReducer.user);
 
   useEffect(() => {
     if (token) {
       setLoading(true);
-      getPostData(setPosts, token);
+      getMyPostData(setMyPosts, token, user._id);
     }
     setLoading(false);
-  }, [setPosts, isAuthenticated]);
+  }, [setMyPosts, isAuthenticated, token, user._id, myposts]);
 
-  const tempPosts = posts.filter((post) => {
+  const tempPosts = myposts.filter((post) => {
     if (search === "") {
       return post;
     }
@@ -41,7 +42,7 @@ const Posts = () => {
         </div>
       ) : (
         <div
-          className={`mb-2 py-1 px-2 md:px-11 ${open ? "lg:px-4 xl:px-36" : "lg:px-14 xl:px-40"
+          className={` w-full mb-2 py-1 px-2 md:px-11 ${open ? "lg:px-4 xl:px-36" : "lg:px-14 xl:px-40"
             } flex flex-col gap-5`}
         >
           {tempPosts
