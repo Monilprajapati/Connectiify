@@ -9,6 +9,7 @@ import { PORT } from "./src/config/serverConfig.js";
 
 //! routes import
 import authRoutes from "./src/routes/auth.routes.js";
+import userRoutes from "./src/routes/user.routes.js";
 
 //* Defination of legend function
 const setUpAndStartServer = async () => {
@@ -30,6 +31,7 @@ const setUpAndStartServer = async () => {
 
         //- routes use
         app.use("/api/v1/auth", authRoutes);
+        app.use("/api/v1/user", userRoutes);
 
         app.listen(PORT, () => {
             console.log("Server started on PORT : ", PORT);
