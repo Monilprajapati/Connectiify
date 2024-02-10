@@ -36,7 +36,6 @@ const CreatePost = () => {
             formData.append("postImage", file);
             formData.append("description", postData.description);
             formData.append("tag", tags);
-            console.log("tags", tags);
             const response = await createPostApi(formData, token);
             // const response = false
 

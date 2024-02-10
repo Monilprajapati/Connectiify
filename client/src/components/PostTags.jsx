@@ -1,4 +1,12 @@
 import React from "react";
+// import { usePostContext } from "../contexts/postContext";
+
+// const { posts } = usePostContext();
+
+// const tenTag = posts.map(post => {
+//   // top 10 unique tags
+//   return post.tag[0].split(',')
+// })
 
 const tags = [
   {
@@ -31,19 +39,19 @@ const tags = [
   },
   {
     id: 10,
-    name:"Review"
+    name: "Review"
   },
   {
     id: 11,
-    name:"Admission"
+    name: "Admission"
   },
   {
     id: 12,
-    name:"Placement"
+    name: "Placement"
   },
   {
     id: 13,
-    name:"Internship"
+    name: "Internship"
   }
 ];
 const PostTags = () => {
