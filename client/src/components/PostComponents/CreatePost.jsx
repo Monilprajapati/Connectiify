@@ -12,7 +12,7 @@ const CreatePost = () => {
     const [isPreviewVisible, setIsPreviewVisible] = useState(false);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { token, open, setPosts } = useUserContext();
+    const { token, open } = useUserContext();
     const [postData, setPostData] = useState({
         description: "",
         tag: "tag01",
@@ -43,6 +43,7 @@ const CreatePost = () => {
         } catch (error) {
             setPostData({ description: "", tag: "tag01" });
             setFile(null);
+            console.log("Error : ", error);
             toast.error("Image Validation Failed");
         } finally {
             setLoading(false);
