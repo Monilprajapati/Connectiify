@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import UserAuthForm from "../pages/UserAuthForm";
 import Home from "../pages/Home";
 import ChatPage from "../pages/ChatPage";
 import VerifyEmail from "../pages/VerifyEmail";
 import PrivateRoute from "./PrivateRoutes";
 import PublicRoute from "./PublicRoutes";
+import AlumniConnect from "../pages/AlumniConnect";
 export default function CustomRoutes() {
   return (
     <>
@@ -26,8 +24,16 @@ export default function CustomRoutes() {
           path="/channel"
           element={
             <PrivateRoute>
-              {/* <ChatSection /> */}
               <ChatPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/alumniconnect"
+          element={
+            <PrivateRoute>
+              <AlumniConnect />
             </PrivateRoute>
           }
         />
