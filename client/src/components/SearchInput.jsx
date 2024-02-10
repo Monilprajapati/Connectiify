@@ -17,6 +17,7 @@ const SearchInput = () => {
         <input
           type="text"
           className="w-full rounded-3xl font-medium text-black bg-transparent outline-none pl-5"
+          placeholder="Search Posts By Tags"
           value={search}
           onChange={(e) => handleSearch(e)}
         />

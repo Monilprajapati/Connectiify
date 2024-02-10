@@ -6,7 +6,7 @@ const PostContext = createContext();
 const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(false)
-  const [search, setSearch] = useState("kenil");
+  const [search, setSearch] = useState("");
 
 
 

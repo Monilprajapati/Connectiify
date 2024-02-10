@@ -44,6 +44,21 @@ const getPostData = async (setPosts,token) => {
     }
 
 };
+
+const updatePostComment = async (postId, commentId, action, token) => {
+  try {
+      await axios
+          .patch(`${URL}/api/v1/post/update/${postId}`,
+              {
+                  action: `${action}`,
+                  commentId
+              },
+              { headers: { Authorization: `Bearer ${token}` } }
+          )
+  } catch (error) {
+      console.log(error.message);
+  }
+};
   
 
-export {createPostApi, getPostData, updatePost};
+export {createPostApi, getPostData, updatePost, updatePostComment};

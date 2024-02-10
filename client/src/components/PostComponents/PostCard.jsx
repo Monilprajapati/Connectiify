@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
 import { updatePost } from "../../services/postServices";
+import Comments from "./Comments";
 
 const PostCard = ({
   postId,
@@ -20,18 +21,19 @@ const PostCard = ({
   tag,
   createdAt,
 }) => {
-  const { token, allusers } = useUserContext();
+  const { token } = useUserContext();
   const user = useSelector(state => state.authReducer.user)
-
   const [seeMore, setSeeMore] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(upvotes.length);
   const [downvoteCount, setDownvoteCount] = useState(downvotes.length);
+  const [commentCount, setCommentCount] = useState(comments.length);
+  const [isCommentClicked, setIsCommentClicked] = useState(false);
   // const [postOwner, setPostOwner] = useState();
   const [isUpvoteClicked, setIsUpvoteClicked] = useState(
-    upvotes.includes(user?._id)
+    upvotes.includes(user._id)
   );
   const [isDownvoteClicked, setIsDownvoteClicked] = useState(
-    downvotes.includes(user?._id)
+    downvotes.includes(user._id)
   );
 
 
@@ -162,11 +164,17 @@ const PostCard = ({
           </button>
         </div>
 
-        <p className="flex gap-2 items-center text-base cursor-pointer">
+        <button
+          className="flex gap-2 items-center text-base cursor-pointer"
+          onClick={() => { setIsCommentClicked(!isCommentClicked) }}>
           <BiComment size={20} />
-          {comments.length}
-        </p>
+          {commentCount}
+        </button>
       </div>
+      {/* {comments} */}
+      {isCommentClicked &&
+        <Comments postId={postId} setCommentCount={setCommentCount} />
+      }
     </div>
   );
 };

@@ -27,9 +27,11 @@ const getComments = asyncHandler(async (req, res) => {
 const createComment = asyncHandler(
     async (req, res) => {
         const { description } = req.body
-        const { _id } = req.user
+        const { _id, userAvatar, username } = req.user
         const comment = await Comment.create({
             commentData: description,
+            userAvatar,
+            username,
             owner: _id
         })
         return res.status(201).json(
