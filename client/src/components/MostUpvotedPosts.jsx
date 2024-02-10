@@ -1,7 +1,9 @@
 import React from "react";
+import {usePostContext} from "../contexts/postContext";
 import SideSectionPostCard from "../components/SideSectionPostCard";
 const MostUpvotedPosts = () => {
-  const { posts } = useUserContext();
+  
+  const { posts } = usePostContext();
   
   const top3Posts = posts
     .sort((a, b) => b.upvotes.length - a.upvotes.length)
