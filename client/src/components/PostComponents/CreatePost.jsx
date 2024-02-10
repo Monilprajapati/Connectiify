@@ -6,7 +6,7 @@ import {createPostApi} from "../../services/postServices";
 import { Toaster, toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import PostPreview from "./PostPreview";
-import TagsInput from "./TagsInput";
+import TagsInput from "../TagsInput";
 
 const CreatePost = () => {
     const [imageUrl, setImageUrl] = useState(null);
@@ -40,11 +40,12 @@ const CreatePost = () => {
 
             if (response) {
                 toast.success("Post created successfully");
-                setPosts((prevPosts) => [response.data, ...prevPosts]);
+                setPosts((prevPosts) => [...prevPosts,response.data]);
             }
         } catch (error) {
             setPostData({ description: "", tag: "tag01" });
             setFile(null);
+            console.log("Error : ", error);
             toast.error("Image Validation Failed");
         } finally {
             setLoading(false);

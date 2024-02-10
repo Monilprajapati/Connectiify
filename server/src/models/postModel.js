@@ -31,11 +31,11 @@ const postSchema = new Schema({
     userAvatar: String,
     username: {
         type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        trim: true,
     },
+    role: {
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: true
 });

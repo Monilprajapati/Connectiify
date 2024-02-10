@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { posts, user } from "../../common/data";
 import moment from "moment";
+import { useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { BiUpvote, BiDownvote, BiComment } from "react-icons/bi";
 import { useUserContext } from "../../contexts/userContext";
 import {updatePost} from "../../services/postServices";
@@ -18,7 +20,9 @@ const PostCard = ({
   tag,
   createdAt,
 }) => {
-  const { token, user, allusers } = useUserContext();
+  const { token, allusers } = useUserContext();
+  const user = useSelector(state => state.authReducer.user)
+
   const [seeMore, setSeeMore] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(upvotes.length);
   const [downvoteCount, setDownvoteCount] = useState(downvotes.length);
