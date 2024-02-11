@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import UserAuthForm from "../pages/UserAuthForm";
 import Home from "../pages/Home";
+import MyPost from "../pages/MyPost";
 import ChatPage from "../pages/ChatPage";
 import VerifyEmail from "../pages/VerifyEmail";
 import PrivateRoute from "./PrivateRoutes";
@@ -16,6 +17,15 @@ export default function CustomRoutes() {
           element={
             <PrivateRoute>
               <Home />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/mypost/:userId"
+          element={
+            <PrivateRoute>
+              <MyPost />
             </PrivateRoute>
           }
         />

@@ -32,6 +32,22 @@ const getPostData = async (setPosts,token) => {
       });
   };
 
+const getMyPostData = async (setPosts,token, userId) => {
+    axios
+      .get(`${URL}/api/v1/post/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // console.log("hell:"+Object.keys(res.data))
+        setPosts(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const updatePost = async (postId, action, token) => {
     try {
         await axios
@@ -59,6 +75,19 @@ const updatePostComment = async (postId, commentId, action, token) => {
       console.log(error.message);
   }
 };
+
+const deletePost = async (postId, token) => {
+    try {
+        await axios.delete(`${URL}/api/v1/post/delete/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+    } catch (error) {
+        console.error("Error deleting post:", error.message);
+        throw error.response;
+    }
+};
   
 
-export {createPostApi, getPostData, updatePost, updatePostComment};
+export {createPostApi, getPostData, updatePost, updatePostComment, getMyPostData, deletePost};

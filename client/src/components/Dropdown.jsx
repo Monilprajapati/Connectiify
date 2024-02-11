@@ -6,17 +6,18 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../app/slices/authSlice";
 import { Toaster, toast } from "react-hot-toast";
-const links = [
-  {
-    id: 1,
-    text: "My Post",
-    url: "/",
-  },
-];
+
 const Dropdown = ({mobile}) => {
   const [open, setOpen] = useState(false);
   const user = useSelector((state) => state.authReducer.user);
   // console.log(user);
+  const links = [
+    {
+      id: 1,
+      text: "My Post",
+      url: `/mypost/${user._id}`,
+    },
+  ];
   // console.log(open);
   const dispatch = useDispatch();
   return (
@@ -62,7 +63,8 @@ const Dropdown = ({mobile}) => {
                     <>
                       <Link
                         key={id}
-                        href={url}
+                        to={url}
+                        onClick={() => setOpen(false)}
                         className="flex px-3 py-2 text-md font-medium border-b border-black border-opacity-40 last:border-none"
                       >
                         {text}

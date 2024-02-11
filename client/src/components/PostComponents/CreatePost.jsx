@@ -41,6 +41,10 @@ const CreatePost = () => {
       if (tags.length === 0) {
         return toast.error("Please add tags");
       }
+      if (postData.description.length === 0) {
+        return toast.error("Please add a description");
+      }
+
       setLoading(true);
       const formData = new FormData();
       formData.append("postImage", file);
@@ -64,6 +68,9 @@ const CreatePost = () => {
       setFile(null);
       console.log("Error : ", error);
       toast.error("Image Validation Failed");
+    } finally {
+      setPostData({ description: "", tag: "tag01" });
+      setFile(null);
     }
   };
 
@@ -73,7 +80,7 @@ const CreatePost = () => {
       <form
         onSubmit={handleSubmit}
         className="bg-medium-grey px-4 rounded-lg mt-4 xl:px-7"
-        // encType="multipart/form-data"
+      // encType="multipart/form-data"
       >
         <div className="w-full flex items-center gap-2 py-4 border-b border-[#7393B3]">
           <img
@@ -87,14 +94,13 @@ const CreatePost = () => {
               postData.description.length < 100
                 ? 1
                 : postData.description.length > 300
-                ? postData.description.length < 500
-                  ? 5
-                  : 8
-                : 3
+                  ? postData.description.length < 500
+                    ? 5
+                    : 8
+                  : 3
             }
-            className={`w-full p-5 ${
-              postData.description.length < 100 ? "rounded-full" : "rounded-md"
-            } bg-secondary resize-none border border-[#66666690] outline-none text-sm text-ascent-1 px-4 py-4 placeholder:text-[#666]`}
+            className={`w-full p-5 ${postData.description.length < 100 ? "rounded-full" : "rounded-md"
+              } bg-secondary resize-none border border-[#66666690] outline-none text-sm text-ascent-1 px-4 py-4 placeholder:text-[#666]`}
             placeholder="What's on your mind...."
             value={postData.description}
             onChange={handleChange}

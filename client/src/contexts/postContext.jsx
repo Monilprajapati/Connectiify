@@ -5,6 +5,7 @@ const PostContext = createContext();
 
 const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
+  const [myposts, setMyPosts] = useState([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState("");
 
@@ -14,7 +15,9 @@ const PostContextProvider = ({ children }) => {
     <PostContext.Provider
       value={{
         posts,
+        myposts,
         setPosts,
+        setMyPosts,
         loading,
         setLoading,
         search,
