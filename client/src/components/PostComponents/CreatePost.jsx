@@ -41,6 +41,10 @@ const CreatePost = () => {
       if (tags.length === 0) {
         return toast.error("Please add tags");
       }
+      if (postData.description.length === 0) {
+        return toast.error("Please add a description");
+      }
+
       setLoading(true);
       const formData = new FormData();
       formData.append("postImage", file);
@@ -62,6 +66,9 @@ const CreatePost = () => {
       setFile(null);
       console.log("Error : ", error);
       toast.error("Image Validation Failed");
+    } finally {
+      setPostData({ description: "", tag: "tag01" });
+      setFile(null);
     }
   };
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getPosts, createPost, updatePost, deletePost } from "../controllers/postController.js";
+import { getPosts, createPost, updatePost, deletePost, getMyPosts } from "../controllers/postController.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { imageValidator } from "../middlewares/imageValidator.middleware.js";
@@ -10,6 +10,11 @@ const router = Router();
 router.route('/all').get(
     verifyJWT,
     getPosts
+)
+
+router.route('/:userId').get(
+    verifyJWT,
+    getMyPosts
 )
 
 router.route('/create').post(
