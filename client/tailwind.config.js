@@ -19,6 +19,10 @@ export default {
       lightGray: "#F5F5F5",
       whitesmoke: "#F5F5F5",
       darkslategray: "#97A2A9",
+      "medium-cyan": "#bae8e8",
+      "light-cyan": "#e3f6f5",
+      "dark-blue": "#272343"
+
     },
     extend: {
       fontFamily: {
