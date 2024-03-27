@@ -51,7 +51,7 @@ const CreatePost = () => {
       formData.append("description", postData.description);
       formData.append("tag", tags);
       const response = await createPostApi(formData, token);
-
+      // console.log(response)
       if (response) {
         toast.success("Post created successfully");
         setPosts((prevPosts) => [...prevPosts, response.data]);
@@ -66,6 +66,7 @@ const CreatePost = () => {
       setFile(null);
       console.log("Error : ", error);
       toast.error("Image Validation Failed");
+      setLoading(false);
     } finally {
       setPostData({ description: "", tag: "tag01" });
       setFile(null);
