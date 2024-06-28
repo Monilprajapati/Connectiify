@@ -21,7 +21,7 @@ const setUpAndStartServer = async () => {
 
         const app = express();
         const corsOptions = {
-            origin: ["https://connectiify.vercel.app", "http://localhost:3000"],
+            origin: ["https://connectiify.vercel.app", "http://localhost:3000", "https://www.connectiify.co"],
             credentials: true,
             optionSuccessStatus: 200,
         };
