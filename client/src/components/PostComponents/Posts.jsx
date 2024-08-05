@@ -35,10 +35,16 @@ const Posts = () => {
 
   return (
     <>
-      {loading ? (
-        <div className="h-full w-full flex justify-center items-center">
-          Loading...
+      {posts.length == 0 ? (
+        <div className="h-full w-full flex justify-center items-center bg-gradient-to-b from-blue-400 to-indigo-500">
+          <div class="inline-block bg-white p-2 shadow-md rounded-md">
+            <p class="text-black text-3xl font-bold text-shadow-md">
+              It's a little quiet around here...
+            </p>
+          </div>
         </div>
+
+
       ) : (
         <div
           className={`mb-2 py-1 px-2 md:px-11 ${open ? "lg:px-4 xl:px-36" : "lg:px-14 xl:px-40"

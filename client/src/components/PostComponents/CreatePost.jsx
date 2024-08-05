@@ -143,7 +143,7 @@ const CreatePost = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`inline-flex items-center bg-[#0444a4] text-white px-8 py-2 rounded-full font-semibold text-sm`}
+            className={`${loading ? "cursor-wait" : ""} inline-flex items-center bg-[#0444a4] text-white px-8 py-2 rounded-full font-semibold text-sm`}
           >
             {loading ? "Posting..." : "Post"}
           </button>

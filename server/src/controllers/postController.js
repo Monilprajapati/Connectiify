@@ -9,7 +9,6 @@ const getPosts = asyncHandler(
         const { room } = req.user
         const posts = await Post.find(
             { room, role: "user" }
-
         )
 
         return res.status(200).json(
@@ -37,30 +36,32 @@ const getMyPosts = asyncHandler(
 const createPost = asyncHandler(
     async (req, res) => {
         const { description, tag } = req.body
-        const { room, _id, userAvatar, username } = req.user
+        const { room, _id, username } = req.user
         // console.log("Description : ", description)
         // console.log("req.body : ", req.body)
-        console.log("avatar : ", userAvatar)
+        // console.log("req.files : ", req.files)
+        // console.log("avatar : ", req.user.avatar)
 
         // req.files is an object containing the files uploaded on the server
         const imageLocalPath = req.files?.postImage[0]?.path
-        // console.log('Image : ', imageLocalPath)
+        // console.log('Local Path : ', imageLocalPath)
 
         // if no image is provided, throw an error
-        // if (!imageLocalPath)
-        // throw new ApiError(400, "Image not provided")
+        if (!imageLocalPath)
+            throw new ApiError(400, "Image not provided")
 
         // upload the image on cloudinary
         let postImage = ""
+        let userAvatar = ""
         if (imageLocalPath)
             postImage = await uploadOnCloudinary(imageLocalPath)
-        // console.log(postImage)
+        // console.log("Cloudinary Path : ", postImage)
 
         if (!postImage)
             throw new ApiError(500, "Failed to upload image on cloudinary")
 
         const post = await Post.create({
-            description,
+            description: " cdk",
             userAvatar,
             username,
             image: postImage.url,
@@ -68,8 +69,8 @@ const createPost = asyncHandler(
             room,
             role: "user",
             owner: _id,
-            // username: req.user.username,
-            // userAvatar: req.user.avatar,
+            username: req.user.username,
+            userAvatar: req.user.avatar,
         })
 
         return res.status(201).json(
