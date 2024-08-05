@@ -26,7 +26,7 @@ router.route('/create').post(
             maxCount: 1
         },
     ]),
-    imageValidator,
+    // imageValidator,
     createPost
 )
 
