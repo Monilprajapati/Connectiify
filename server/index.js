@@ -1,6 +1,5 @@
 //! Third Party modules
 import express from "express";
-import bodyParser from "body-parser";
 
 //! Custom modules
 import cors from "cors";
@@ -13,10 +12,10 @@ import userRoutes from "./src/routes/user.routes.js";
 import postRoutes from "./src/routes/post.routes.js";
 import commentRoutes from "./src/routes/comment.routes.js";
 
-//* Defination of legend function
+//* Definition of legend function
 const setUpAndStartServer = async () => {
     try {
-        //- connect to database
+        //- Connect to database
         await connectToMongo();
 
         const app = express();
@@ -28,17 +27,18 @@ const setUpAndStartServer = async () => {
 
         app.use(cors(corsOptions));
 
-        app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(express.json());
+        app.use(express.urlencoded({ extended: true }));
 
-        //- routes use
+        //- Routes use
         app.use("/api/v1/auth", authRoutes);
         app.use("/api/v1/comment", commentRoutes);
         app.use("/api/v1/user", userRoutes);
         app.use("/api/v1/post", postRoutes);
 
-        app.listen(PORT, () => {
-            console.log("Server started on PORT : ", PORT);
+        const port =  PORT || 3030;
+        app.listen(port, () => {
+            console.log("Server started on PORT : ", port);
         });
     } catch (error) {
         console.log("Error, connecting to database..." + error);
