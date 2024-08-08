@@ -107,7 +107,7 @@ const UserAuthForm = ({ type }) => {
   };
   return (
     <AnimationWrapper keyValue={type}>
-      <section className="h-cover flex items-center justify-center">
+      <section className="h-cover flex flex-col items-center justify-center">
         <Toaster />
         <form className="max-h-[400px]" onSubmit={handleSubmit}>
           <h1 className="text-4xl font-lato capitalize text-center mb-24">
@@ -167,6 +167,16 @@ const UserAuthForm = ({ type }) => {
               </>
             )}
           </p>
+          <div className="mt-6">
+            We are using nodemailer to send the mail to the user.
+            <br />
+            So it's taking too long on production :) <br />
+            Please use the following credentials to login:
+            <br />
+            <strong>Email:</strong> monillprajapatii@gmail.com
+            <br /> 
+            <strong>Password:</strong> 123@Abc
+          </div>
         </form>
       </section>
     </AnimationWrapper>

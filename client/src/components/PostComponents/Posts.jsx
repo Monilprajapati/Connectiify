@@ -20,7 +20,7 @@ const Posts = () => {
     }
     setLoading(false);
   }, [setPosts, isAuthenticated]);
-
+  console.log(posts);
   const tempPosts = posts.filter((post) => {
     if (search === "") {
       return post;
