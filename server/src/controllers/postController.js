@@ -36,7 +36,7 @@ const getMyPosts = asyncHandler(
 const createPost = asyncHandler(
     async (req, res) => {
         const { description, tag } = req.body
-        const { room, _id, username } = req.user
+        const { room, _id, username, userAvatar} = req.user
         // console.log("Description : ", description)
         // console.log("req.body : ", req.body)
         // console.log("req.files : ", req.files)
@@ -49,10 +49,8 @@ const createPost = asyncHandler(
         // if no image is provided, throw an error
         if (!imageLocalPath)
             throw new ApiError(400, "Image not provided")
-
         // upload the image on cloudinary
         let postImage = ""
-        let userAvatar = ""
         if (imageLocalPath)
             postImage = await uploadOnCloudinary(imageLocalPath)
         // console.log("Cloudinary Path : ", postImage)
@@ -61,8 +59,7 @@ const createPost = asyncHandler(
             throw new ApiError(500, "Failed to upload image on cloudinary")
 
         const post = await Post.create({
-            description: " cdk",
-            userAvatar,
+            description,
             username,
             image: postImage.url,
             tag,
@@ -70,7 +67,7 @@ const createPost = asyncHandler(
             role: "user",
             owner: _id,
             username: req.user.username,
-            userAvatar: req.user.avatar,
+            userAvatar: req.user.userAvatar,
         })
 
         return res.status(201).json(
