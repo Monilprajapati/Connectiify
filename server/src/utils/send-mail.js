@@ -12,9 +12,10 @@ function sendMail(userEmail, token) {
     });
 
     token = `http://${DOMAIN_NAME}/api/v1/auth/verify/` + token;
+    const adminEmail = process.env.ADMIN_URL;
     //- Define the email options
     const mailOptions = {
-        from: 'noreply.campusvibes@gmail.com',
+        from: adminEmail,
         to: userEmail,
         subject: 'Welcome to Connectiify - Verify Your Email',
         html: `
