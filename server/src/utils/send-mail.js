@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import { DOMAIN_NAME, EMAIL_ID, EMAIL_PASSWORD, BACKEND_URL } from '../config/serverConfig.js'
 
-function sendMail(userEmail, token) {
+async function sendMail(userEmail, token) {
     //- Create a transporter with  Gmail account credentials
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -32,14 +32,14 @@ function sendMail(userEmail, token) {
         `
     };
 
-    //- Send the email
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log('Error:', error);
-        } else {
-            console.log("Email Send Successfully to " + userEmail)
-        }
-    });
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Email Sent Successfully to " + userEmail);
+        return info;
+    } catch (error) {
+        console.log('Error:', error);
+        throw error; // Re-throw the error so the calling function knows something went wrong
+    }
 }
 
 export { sendMail }
