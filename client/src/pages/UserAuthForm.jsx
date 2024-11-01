@@ -105,11 +105,23 @@ const UserAuthForm = ({ type }) => {
       userAuth(serverRoute, formData);
     }
   };
+
+  const handleTestCredentials = () => {
+    setFormData({
+      ...formData,
+      email: "monilprajapati30@gmail.com",
+      password: "123@Abc"
+    });
+  };
+
   return (
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex flex-col items-center justify-center">
         <Toaster />
-        <form className="max-h-[400px]" onSubmit={handleSubmit}>
+        <form
+          className="max-h-[400px] min-w-[350px] md:min-w-[400px]"
+          onSubmit={handleSubmit}
+        >
           <h1 className="text-4xl font-lato capitalize text-center mb-24">
             {type === "login" ? "Welcome back" : "Create an account"}
           </h1>
@@ -118,7 +130,7 @@ const UserAuthForm = ({ type }) => {
             name="email"
             type="email"
             id="email"
-            value=""
+            value={formData.email}
             placeholder="Email"
             icon="email"
             handleChange={handleChange}
@@ -127,7 +139,7 @@ const UserAuthForm = ({ type }) => {
             name="password"
             type="password"
             id="password"
-            value=""
+            value={formData.password}
             placeholder="Password"
             icon="password"
             handleChange={handleChange}
@@ -137,7 +149,7 @@ const UserAuthForm = ({ type }) => {
               name="confirmPassword"
               type="password"
               id="confirmPassword"
-              value=""
+              value={formData.confirmPassword}
               placeholder="Confirm Password"
               icon="password"
               handleChange={handleChange}
@@ -146,6 +158,16 @@ const UserAuthForm = ({ type }) => {
           <button className="btn-dark mt-11 center" onClick={handleSubmit}>
             {type}
           </button>
+
+          {type === "login" && (
+            <button 
+              type="button"
+              className="btn-light mt-4 center"
+              onClick={handleTestCredentials}
+            >
+              Use Test Credentials
+            </button>
+          )}
 
           <p className="mt-14 text-dark-grey text-xl text-center">
             {type === "login" ? (
@@ -167,16 +189,6 @@ const UserAuthForm = ({ type }) => {
               </>
             )}
           </p>
-          <div className="mt-6">
-            We are using nodemailer to send the mail to the user.
-            <br />
-            So it's taking too long on production :) <br />
-            Please use the following credentials to login:
-            <br />
-            <strong>Email:</strong> monillprajapatii@gmail.com
-            <br /> 
-            <strong>Password:</strong> 123@Abc
-          </div>
         </form>
       </section>
     </AnimationWrapper>
