@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { DOMAIN_NAME, EMAIL_ID, EMAIL_PASSWORD } from '../config/serverConfig.js'
+import { DOMAIN_NAME, EMAIL_ID, EMAIL_PASSWORD, BACKEND_URL } from '../config/serverConfig.js'
 
 function sendMail(userEmail, token) {
     //- Create a transporter with  Gmail account credentials
@@ -11,7 +11,7 @@ function sendMail(userEmail, token) {
         }
     });
 
-    token = `http://${DOMAIN_NAME}/api/v1/auth/verify/` + token;
+    token = `${BACKEND_URL}/api/v1/auth/verify/` + token;
     //- Define the email options
     const mailOptions = {
         from: EMAIL_ID,
