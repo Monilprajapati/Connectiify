@@ -11,7 +11,7 @@ const CLIENTURL = process.env.CLIENT_URL;
 
 const io = new Server(server, {
   cors: {
-    origin: [CLIENTURL,"https://connectiify.vercel.app", "https://www.connectiify.co"],
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
