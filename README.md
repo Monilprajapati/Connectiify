@@ -114,7 +114,3 @@ We would like to thank the following individuals and projects for their contribu
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
-
-## Contact
-
-If you have any questions, concerns, or feedback about Connectiify, please feel free to contact us at [contact@example.com](mailto:contact@example.com).
